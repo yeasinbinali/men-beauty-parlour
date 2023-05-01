@@ -1,6 +1,7 @@
 import { faClock, faMoneyBillWave, faPerson } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import service1 from '../../../images/services/service1.jpeg';
 import service2 from '../../../images/services/service2.jpeg';
 import service3 from '../../../images/services/service3.jpg';
@@ -27,7 +28,7 @@ const HomeServices = () => {
         {
             id: 3,
             title: 'Scalp Treatment',
-            price: '$20',
+            price: '$60',
             time: '3hour',
             barber: 'Male',
             img: service3
@@ -36,7 +37,7 @@ const HomeServices = () => {
     return (
         <div className='my-10'>
             <h2 className='text-4xl text-center'>Our <strong className='text-primary'>Services</strong></h2>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-10'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mt-10 mb-4'>
                 {
                     services.map(service => {
                         return (
@@ -48,14 +49,14 @@ const HomeServices = () => {
                                     <p><FontAwesomeIcon icon={faClock}/>{service.time}</p>
                                     <p><FontAwesomeIcon icon={faPerson}/>{service.barber}</p>
                                 </div>
-                                <div className='text-center my-2'><button className='btn btn-xs bg-accent text-white'>Appointment</button></div>
+                                <div className='text-center my-2'><button className='btn btn-xs bg-accent text-white'><Link to={`/service/${service.id}`}>Appointment</Link></button></div>
                             </div>
                         )
                     })
                 }
             </div>
             <div className='text-center'>
-                <button className='btn btn-xl btn-primary text-white'>Explore More+</button>
+                <button className='btn btn-xl btn-primary text-white'><Link to='/services'>Explore More+</Link></button>
             </div>
         </div>
     );
