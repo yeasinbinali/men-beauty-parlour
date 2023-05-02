@@ -7,7 +7,8 @@ const AppointmentContainer = () => {
   const today = new Date();
   const [selected, setSelected] = useState(today);
   const service = useLoaderData();
-  const { barber, img, price, time, title } = service;
+  console.log(service);
+  const { price, title, slots } = service;
 
   const footer = selected ? (
     <p>
@@ -52,24 +53,40 @@ const AppointmentContainer = () => {
         <input
           type="text"
           placeholder="Your Name"
-          className="input w-full max-w-xl mb-2"
+          className="input input-bordered w-full max-w-xl mb-2"
+          required
         />
         <input
           type="text"
           placeholder="Email Address"
-          className="input w-full max-w-xl mb-2"
+          className="input input-bordered w-full max-w-xl mb-2"
+          required
         />
         <input
           type="text"
           placeholder="Phone Number"
-          className="input w-full max-w-xl mb-2"
+          className="input input-bordered w-full max-w-xl mb-2"
+          required
         />
         <input
           type="text"
+          placeholder={`${format(selected, "PPP")}`}
+          className="input input-bordered w-full max-w-xl mb-2"
+          readOnly
+        />
+        <select className="select select-bordered w-full max-w-xl mb-2">
+          <option selected>{slots[0]}</option>
+          {
+            slots.map(slot => <option>{slot}</option>)
+          }
+        </select>
+        <input
+          type="text"
           placeholder={price}
-          className="input w-full max-w-xl mb-2"
+          className="input input-bordered w-full max-w-xl mb-2"
+          readOnly
         /><br/>
-        <button className='btn btn-primary text-white'>Submit</button>
+        <button className='btn btn-primary btn-wide text-white'>Submit</button>
       </form>
     </div>
   );

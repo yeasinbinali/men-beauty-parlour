@@ -1,65 +1,38 @@
-import { faClock, faMoneyBillWave, faPerson } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import service1 from '../../../images/services/service1.jpeg';
-import service2 from '../../../images/services/service2.jpeg';
-import service3 from '../../../images/services/service3.jpg';
-
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { Link } from "react-router-dom";
+import HomeServiceContainer from "./HomeServiceContainer";
 
 const HomeServices = () => {
-    const services = [
+  const { data: services } = useQuery({
+    queryKey: ["services"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/services");
+      const data = await res.json();
+      return data;
+    }
+  });
+  return (
+    <div className="my-10">
+      <h2 className="text-4xl text-center">
+        Our <strong className="text-primary">Services</strong>
+      </h2>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-5">
         {
-            id: 1,
-            title: 'Hair Cutting & Styling',
-            price: '$20',
-            time: '1hour',
-            barber: 'Female',
-            img: service1
-        },
-        {
-            id: 2,
-            title: 'Face Treatment',
-            price: '$45',
-            time: '2.5hour',
-            barber: 'Male',
-            img: service2
-        },
-        {
-            id: 3,
-            title: 'Scalp Treatment',
-            price: '$60',
-            time: '3hour',
-            barber: 'Male',
-            img: service3
+            services && 
+            services.slice(0,3).map(service => <HomeServiceContainer
+                key = {service._id}
+                service = {service}
+            ></HomeServiceContainer>)
         }
-    ]
-    return (
-        <div className='my-10'>
-            <h2 className='text-4xl text-center'>Our <strong className='text-primary'>Services</strong></h2>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mt-10 mb-4'>
-                {
-                    services.map(service => {
-                        return (
-                            <div className='border-4 p-2'>
-                                <img className='w-80 h-60 mx-auto' src={service.img} alt='service' />
-                                <h3 className='font-bold text-center text-xl my-2'>{service.title}</h3>
-                                <div className='flex justify-evenly items-center'>
-                                    <p><FontAwesomeIcon icon={faMoneyBillWave} />{service.price}</p>
-                                    <p><FontAwesomeIcon icon={faClock}/>{service.time}</p>
-                                    <p><FontAwesomeIcon icon={faPerson}/>{service.barber}</p>
-                                </div>
-                                <div className='text-center my-2'><button className='btn btn-xs bg-accent text-white'><Link to={`/service/${service.id}`}>Appointment</Link></button></div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-            <div className='text-center'>
-                <button className='btn btn-xl btn-primary text-white'><Link to='/services'>Explore More+</Link></button>
-            </div>
-        </div>
-    );
+      </div>
+      <div className="text-center">
+        <button className="btn btn-xl btn-primary text-white">
+          <Link to="/services">Explore More+</Link>
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default HomeServices;
