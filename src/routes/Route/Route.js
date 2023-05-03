@@ -6,6 +6,7 @@ import Login from "../../pages/Login/Login";
 import Reviews from "../../pages/Reviews/Reviews/Reviews";
 import Services from "../../pages/Services/Services/Services";
 import Signup from "../../pages/Signup/Signup";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -23,11 +24,11 @@ export const router = createBrowserRouter([
       {
         path: "/service/:id",
         element: (
-          <AppointmentContainer></AppointmentContainer>
+          <PrivateRoute><AppointmentContainer></AppointmentContainer></PrivateRoute>
         ),
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/services/${params.id}`);
-        },
+        }
       },
       {
         path: "/reviews",

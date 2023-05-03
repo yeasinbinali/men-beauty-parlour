@@ -12,7 +12,10 @@ const Services = () => {
     },
   });
 
-  if (isLoading) return <button className="btn loading">Loading..</button>;
+  if (isLoading){
+    return <button className="btn loading text-black border-slate-950">Loading..</button>;
+  }
+  
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-5">
       {services &&

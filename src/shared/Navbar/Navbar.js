@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
+import { AuthContext } from "../../contexts/UserContext";
 
 const Navbar = () => {
+  const { user, logoutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser()
+    .then(() => {
+      navigate('/');
+    })
+    .catch(error => console.log(error));
+  }
+
   return (
     <div>
       <div className="navbar">
@@ -38,7 +51,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <h2 className="text-3xl font-bold">Beauty <strong className='text-primary'>Parlour</strong></h2>
+          <h2 className="text-3xl font-bold">
+            Beauty <strong className="text-primary">Parlour</strong>
+          </h2>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -54,9 +69,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <button className="btn bg-primary text-white">
-            <Link to="/login">Login</Link>
-          </button>
+          {user && user.uid ? (
+            <button onClick={handleLogout} className="btn bg-primary text-white">
+              Logout
+            </button>
+          ) : (
+            <button className="btn bg-primary text-white">
+              <Link to="/login">Login</Link>
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import { differenceInCalendarDays, format } from "date-fns";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { DayPicker } from "react-day-picker";
 import { useLoaderData } from "react-router";
+import { AuthContext } from "../../contexts/UserContext";
 
 const AppointmentContainer = () => {
   const today = new Date();
+  const {user} = useContext(AuthContext);
   const [selected, setSelected] = useState(today);
   const service = useLoaderData();
-  console.log(service);
   const { price, title, slots } = service;
 
   const footer = selected ? (
@@ -23,8 +24,8 @@ const AppointmentContainer = () => {
   }
 
   return (
-    <div className="lg:flex justify-evenly items-center">
-      <div className='lg:w-fit md:w-60 sm:w-60 mx-auto'>
+    <div className="lg:flex justify-between items-center">
+      <div className='lg:w-fit md:w-60 sm:w-60 mx-auto lg:px-10 md:px-0 px-10'>
         <DayPicker
           styles={{
             caption: {
@@ -35,7 +36,7 @@ const AppointmentContainer = () => {
             },
             head_cell: { padding: "10px" },
             cell: { padding: "10px" },
-            tfoot: { fontSize: "20px" },
+            tfoot: { fontSize: "20px" }
           }}
           mode="single"
           selected={selected}
@@ -53,28 +54,29 @@ const AppointmentContainer = () => {
         <input
           type="text"
           placeholder="Your Name"
-          className="input input-bordered w-full max-w-xl mb-2"
+          className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           required
         />
         <input
           type="text"
-          placeholder="Email Address"
-          className="input input-bordered w-full max-w-xl mb-2"
+          placeholder={user?.email}
+          className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           required
+          readOnly
         />
         <input
           type="text"
           placeholder="Phone Number"
-          className="input input-bordered w-full max-w-xl mb-2"
+          className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           required
         />
         <input
           type="text"
           placeholder={`${format(selected, "PPP")}`}
-          className="input input-bordered w-full max-w-xl mb-2"
+          className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           readOnly
         />
-        <select className="select select-bordered w-full max-w-xl mb-2">
+        <select className="select select-bordered w-full lg:max-w-xl md:max-w-sm mb-2">
           <option selected>{slots[0]}</option>
           {
             slots.map(slot => <option>{slot}</option>)
@@ -83,10 +85,10 @@ const AppointmentContainer = () => {
         <input
           type="text"
           placeholder={price}
-          className="input input-bordered w-full max-w-xl mb-2"
+          className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           readOnly
         /><br/>
-        <button className='btn btn-primary btn-wide text-white'>Submit</button>
+        <button className='btn btn-primary btn-wide text-white my-2'>Submit</button>
       </form>
     </div>
   );
