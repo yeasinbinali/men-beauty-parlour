@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/UserContext";
 
 const Navbar = () => {
@@ -9,11 +9,11 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser()
-    .then(() => {
-      navigate('/');
-    })
-    .catch(error => console.log(error));
-  }
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div>
@@ -49,6 +49,33 @@ const Navbar = () => {
               <li>
                 <Link to="/reviews">Reviews</Link>
               </li>
+              {user && user.uid && (
+                <li tabIndex={0}>
+                  <Link>
+                    Dashboard
+                    <svg
+                      className="fill-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                    </svg>
+                  </Link>
+                  <ul className="p-2 bg-gray-100">
+                    <li>
+                      <Link>My Appointment</Link>
+                    </li>
+                    <li>
+                      <Link>All Users</Link>
+                    </li>
+                    <li>
+                      <Link>Add new service</Link>
+                    </li>
+                  </ul>
+                </li>
+              )}
             </ul>
           </div>
           <h2 className="text-3xl font-bold">
@@ -66,11 +93,41 @@ const Navbar = () => {
             <li>
               <Link to="/reviews">Reviews</Link>
             </li>
+            {user && user.uid && (
+              <li tabIndex={0}>
+                <Link>
+                  Dashboard
+                  <svg
+                    className="fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                  </svg>
+                </Link>
+                <ul className="p-2 bg-gray-100">
+                  <li>
+                    <Link>My Appointment</Link>
+                  </li>
+                  <li>
+                    <Link>All Users</Link>
+                  </li>
+                  <li>
+                    <Link>Add new service</Link>
+                  </li>
+                </ul>
+              </li>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
           {user && user.uid ? (
-            <button onClick={handleLogout} className="btn bg-primary text-white">
+            <button
+              onClick={handleLogout}
+              className="btn bg-primary text-white"
+            >
               Logout
             </button>
           ) : (
