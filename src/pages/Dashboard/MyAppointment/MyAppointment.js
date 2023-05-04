@@ -19,6 +19,7 @@ const MyAppointment = () => {
 
   return (
     <div className="my-10">
+      <h2 className='text-3xl text-center mb-4'>My <strong className='text-primary font-bold'>Appointment</strong></h2>
       <table className="w-full border-collapse">
         <thead className="bg-gray-50">
           <tr>

@@ -38,7 +38,7 @@ const Signup = () => {
     createUser(email, password)
     .then(result => {
       const user = result.user;
-      navigate('/');
+      saveUser(name, email);
       console.log(user);
     })
     .catch(error => {
@@ -46,6 +46,23 @@ const Signup = () => {
       setError(errorMessage);
     });
   };
+
+  const saveUser = (name, email) => {
+    const user = {name, email};
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      }, 
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        navigate('/');
+      }
+    })
+  }
 
   return (
     <div className="md:flex justify-between items-center my-10">
