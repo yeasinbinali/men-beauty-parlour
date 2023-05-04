@@ -38,7 +38,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 bg-gray-50"
             >
               <li>
                 <Link to="/">Home</Link>
@@ -65,13 +65,13 @@ const Navbar = () => {
                   </Link>
                   <ul className="p-2 bg-gray-100">
                     <li>
-                      <Link>My Appointment</Link>
+                      <Link to='/dashboard/myAppointment'>My Appointment</Link>
                     </li>
                     <li>
-                      <Link>All Users</Link>
+                      <Link to='/dashboard/allUser'>All User</Link>
                     </li>
                     <li>
-                      <Link>Add new service</Link>
+                      <Link to='/dashboard/addService'>Add new service</Link>
                     </li>
                   </ul>
                 </li>
@@ -109,13 +109,13 @@ const Navbar = () => {
                 </Link>
                 <ul className="p-2 bg-gray-100">
                   <li>
-                    <Link>My Appointment</Link>
+                    <Link to='/dashboard/myAppointment'>My Appointment</Link>
                   </li>
                   <li>
-                    <Link>All Users</Link>
+                    <Link to='/dashboard/allUser'>All Users</Link>
                   </li>
                   <li>
-                    <Link>Add new service</Link>
+                    <Link to='/dashboard/addService'>Add new service</Link>
                   </li>
                 </ul>
               </li>
