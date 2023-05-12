@@ -37,7 +37,7 @@ const Purposes = () => {
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-10'>
         {purposes.map((purpose) => {
           return (
-            <div className='bg-white p-8'>
+            <div key={purpose.id} className='bg-white p-8'>
               <img className='w-20 rounded-full mx-auto' src={purpose.image} alt="" />
               <h4 className='my-3 font-bold text-center'>{purpose.title}</h4>
               <p className='text-justify'>{purpose.description}</p>

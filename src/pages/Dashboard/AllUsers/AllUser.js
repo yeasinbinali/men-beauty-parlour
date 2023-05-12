@@ -29,9 +29,8 @@ const AllUser = () => {
             <p className="text-center text-2xl">No user</p>
           ) : (
             users.map((user, i) => {
-                console.log(user);
               return (
-                <tr>
+                <tr key={user._id}>
                   <td>{i + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>

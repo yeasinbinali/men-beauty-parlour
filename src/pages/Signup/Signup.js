@@ -1,34 +1,32 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 import signup from "../../images/signup.png";
 import { useForm } from "react-hook-form";
 import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../../contexts/UserContext";
 
-
 const Signup = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const {createUser, googleSignIn} = useContext(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
 
   const handleGoogleSignIn = () => {
     googleSignIn()
-    .then(result => {
-      const user = result.user;
-      navigate('/');
-      console.log(user);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
+      .then((result) => {
+        const user = result.user;
+        saveUser(user.displayName, user.email);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleSignUp = (data) => {
     const name = data.name;
@@ -36,33 +34,33 @@ const Signup = () => {
     const password = data.password;
 
     createUser(email, password)
-    .then(result => {
-      const user = result.user;
-      saveUser(name, email);
-      console.log(user);
-    })
-    .catch(error => {
-      const errorMessage = error.message;
-      setError(errorMessage);
-    });
+      .then((result) => {
+        const user = result.user;
+        saveUser(name, email);
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
   };
 
   const saveUser = (name, email) => {
-    const user = {name, email};
-    fetch('http://localhost:5000/users', {
-      method: 'POST',
+    const user = { name, email };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json'
-      }, 
-      body: JSON.stringify(user)
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data.acknowledged){
-        navigate('/');
-      }
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.acknowledged){
+          navigate('/')
+        }
+      });
+  };
 
   return (
     <div className="md:flex justify-between items-center my-10">
@@ -86,7 +84,7 @@ const Signup = () => {
           </h2>
           <form onSubmit={handleSubmit(handleSignUp)}>
             {/* Name */}
-            <div className='mb-3'>
+            <div className="mb-3">
               <label htmlFor="name">Name</label>
               <input
                 className="input input-bordered w-full"
@@ -94,7 +92,7 @@ const Signup = () => {
                 type="text"
                 {...register("name", {
                   required: true,
-                  minLength: { value: 5 },
+                  minLength: { value: 3 }
                 })}
               />
               {errors.name?.type === "required" && (
@@ -154,9 +152,11 @@ const Signup = () => {
               )}
             </div>
             <br />
-            {
-              error ? <p className='text-center text-red-600 mb-2'>{error}</p> : ''
-            }
+            {error ? (
+              <p className="text-center text-red-600 mb-2">{error}</p>
+            ) : (
+              ""
+            )}
             {/* submit btn */}
             <input
               value="submit"
@@ -173,7 +173,10 @@ const Signup = () => {
           <div className="divider m-0">OR</div>
           {/* google signin btn */}
           <div className="text-center">
-            <button onClick={handleGoogleSignIn} className="btn btn-accent text-white">
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn btn-accent text-white"
+            >
               Google Sign-In
             </button>
           </div>

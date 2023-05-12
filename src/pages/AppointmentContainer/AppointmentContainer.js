@@ -96,9 +96,9 @@ const AppointmentContainer = () => {
         />
         <input
           type="text"
-          {...register("email",
-          {value:`${user?.email}`}
-          )}
+          {...register("email",{
+            value:`${user?.email}`
+          })}
           className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           required
           readOnly

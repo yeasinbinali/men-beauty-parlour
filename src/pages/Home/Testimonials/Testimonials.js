@@ -34,7 +34,7 @@ const Testimonials = () => {
                 {
                     testimonials.map(tesmonial => {
                         return(
-                            <div className='bg-white p-5'>
+                            <div key={tesmonial.id} className='bg-white p-5'>
                                 <p className='text-justify'>❝{tesmonial.description}❞</p>
                                 <div className='flex items-center my-6'>
                                     <img className='w-12 h-12 rounded-full' src={tesmonial.image} alt='' />
