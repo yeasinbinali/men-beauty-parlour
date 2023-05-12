@@ -102,7 +102,7 @@ const Signup = () => {
               )}
               {errors.name && errors.name.type === "minLength" && (
                 <small className="text-red-600" role="alert">
-                  Min Length 5
+                  Min Length 3
                 </small>
               )}
             </div>

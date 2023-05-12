@@ -40,7 +40,6 @@ const AppointmentContainer = () => {
       slot: data.slot,
       price: data.price
     }
-    console.log(booking);
 
     fetch('http://localhost:5000/bookings', {
       method: 'POST',

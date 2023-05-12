@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAu4BWJhk7FpCeneE0GVPPh5eYY4a9ZKic",
-  authDomain: "men-beauty-parlour.firebaseapp.com",
-  projectId: "men-beauty-parlour",
-  storageBucket: "men-beauty-parlour.appspot.com",
-  messagingSenderId: "477809547522",
-  appId: "1:477809547522:web:d79ea92cc0785456374a1b"
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
