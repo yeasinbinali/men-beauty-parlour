@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/UserContext";
+import useAdmin from "../../hooks/useAdmin";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,6 +16,10 @@ const Navbar = () => {
         navigate("/");
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleToast = () => {
+    toast.error("Only admin use this route!");
   };
 
   return (
@@ -71,7 +78,11 @@ const Navbar = () => {
                       <Link to="/dashboard/allUser">All User</Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/addService">Add New Service</Link>
+                      {isAdmin ? (
+                        <Link to="/dashboard/addService">Add New Service</Link>
+                      ) : (
+                        <button onClick={handleToast}>Add New Service</button>
+                      )}
                     </li>
                     <li>
                       <Link to="/dashboard/givenReview">Your Review</Link>
@@ -118,7 +129,11 @@ const Navbar = () => {
                     <Link to="/dashboard/allUser">All Users</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard/addService">Add new service</Link>
+                    {isAdmin ? (
+                      <Link to="/dashboard/addService">Add New Service</Link>
+                    ) : (
+                      <button onClick={handleToast}>Add New Service</button>
+                    )}
                   </li>
                   <li>
                     <Link to="/dashboard/givenReview">Your Review</Link>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const AddService = () => {
   const {
@@ -10,59 +10,58 @@ const AddService = () => {
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgBB_key;
-  console.log(imgHostKey);
 
   const handleService = (data) => {
     const image = data.image[0];
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
 
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
 
     fetch(url, {
-        method: 'POST',
-        body: formData
+      method: "POST",
+      body: formData,
     })
-    .then(res => res.json())
-    .then(imgData => {
-        if(imgData.success){
-            const serviceDetail = {
-                title: data.name,
-                price: data.price,
-                time: data.time,
-                barber: data.barber,
-                slots: [
-                  '8:00am',
-                  '9:00am',
-                  '10:00am',
-                  '11:00am',
-                  '12:00am',
-                  '1:00pm',
-                  '2:00pm',
-                  '3:00pm',
-                  '4:00pm',
-                  '5:00pm',
-                  '6:00pm',
-                  '7:00pm',
-                  '8:00pm',
-                ],
-                img: imgData.data.url
-            }
-            fetch('http://localhost:5000/services', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(serviceDetail)
-            })
-            .then(res => res.json())
-            .then(serviceData => {
-              if(serviceData.acknowledged){
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          const serviceDetail = {
+            title: data.name,
+            price: data.price,
+            time: data.time,
+            barber: data.barber,
+            slots: [
+              "8:00am",
+              "9:00am",
+              "10:00am",
+              "11:00am",
+              "12:00am",
+              "1:00pm",
+              "2:00pm",
+              "3:00pm",
+              "4:00pm",
+              "5:00pm",
+              "6:00pm",
+              "7:00pm",
+              "8:00pm",
+            ],
+            img: imgData.data.url,
+          };
+          fetch("http://localhost:5000/services", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(serviceDetail),
+          })
+            .then((res) => res.json())
+            .then((serviceData) => {
+              if (serviceData.acknowledged) {
                 toast.success(`New service ${data.name}, added successfully!`);
               }
-            })
+            });
         }
-    })
+      });
   };
 
   return (
@@ -127,8 +126,9 @@ const AddService = () => {
           )}
         </div>
         {/* barber */}
-        <div  className="mb-2">
-          <label htmlFor="barber">Barber</label><br/>
+        <div className="mb-2">
+          <label htmlFor="barber">Barber</label>
+          <br />
           <select
             className="select w-full"
             {...register("barber", {
@@ -165,12 +165,8 @@ const AddService = () => {
         </div>
         <br />
         {/* submit btn */}
-        <div className='text-center'>
-          <input
-            value="Add Service"
-            type="submit"
-            className="btn btn-primary text-white"
-          />
+        <div className="text-center">
+          <button className="btn btn-primary text-white">Submit</button>
         </div>
       </form>
     </div>
