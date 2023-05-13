@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 
 const AddService = () => {
   const {
@@ -47,7 +48,6 @@ const AddService = () => {
                 ],
                 img: imgData.data.url
             }
-            console.log(serviceDetail);
             fetch('http://localhost:5000/services', {
                 method: 'POST',
                 headers: {
@@ -56,7 +56,11 @@ const AddService = () => {
                 body: JSON.stringify(serviceDetail)
             })
             .then(res => res.json())
-            .then(serviceData => console.log(serviceData))
+            .then(serviceData => {
+              if(serviceData.acknowledged){
+                toast.success(`New service ${data.name}, added successfully!`);
+              }
+            })
         }
     })
   };

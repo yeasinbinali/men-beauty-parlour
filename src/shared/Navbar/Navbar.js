@@ -65,13 +65,16 @@ const Navbar = () => {
                   </Link>
                   <ul className="p-2 bg-gray-100">
                     <li>
-                      <Link to='/dashboard/myAppointment'>My Appointment</Link>
+                      <Link to="/dashboard/myAppointment">My Appointment</Link>
                     </li>
                     <li>
-                      <Link to='/dashboard/allUser'>All User</Link>
+                      <Link to="/dashboard/allUser">All User</Link>
                     </li>
                     <li>
-                      <Link to='/dashboard/addService'>Add new service</Link>
+                      <Link to="/dashboard/addService">Add New Service</Link>
+                    </li>
+                    <li>
+                      <Link to="/dashboard/givenReview">Your Review</Link>
                     </li>
                   </ul>
                 </li>
@@ -109,13 +112,16 @@ const Navbar = () => {
                 </Link>
                 <ul className="p-2 bg-gray-100">
                   <li>
-                    <Link to='/dashboard/myAppointment'>My Appointment</Link>
+                    <Link to="/dashboard/myAppointment">My Appointment</Link>
                   </li>
                   <li>
-                    <Link to='/dashboard/allUser'>All Users</Link>
+                    <Link to="/dashboard/allUser">All Users</Link>
                   </li>
                   <li>
-                    <Link to='/dashboard/addService'>Add new service</Link>
+                    <Link to="/dashboard/addService">Add new service</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/givenReview">Your Review</Link>
                   </li>
                 </ul>
               </li>
