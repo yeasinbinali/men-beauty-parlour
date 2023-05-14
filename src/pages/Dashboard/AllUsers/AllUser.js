@@ -1,9 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../contexts/UserContext";
+import useAdmin from "../../../hooks/useAdmin";
 
 const AllUser = () => {
   const url = "http://localhost:5000/users";
+  const {user} = useContext(AuthContext);
+
+  const [isAdmin] = useAdmin(user?.email);
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -14,22 +19,25 @@ const AllUser = () => {
     },
   });
 
-  const handleAdmin = id => {
+  const handleAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: 'PUT'
+      method: "PUT"
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data.modifiedCount > 0){
-        toast.success('Make admin successfully!');
-        refetch();
-      }
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          console.log(data);
+          toast.success("Make admin successfully!");
+          refetch();
+        }
+      });
+  };
 
   return (
     <div className="my-5">
-        <h2 className='text-3xl text-center mb-4'>All <strong className='text-primary font-bold'>Users</strong></h2>
+      <h2 className="text-3xl text-center mb-4">
+        All <strong className="text-primary font-bold">Users</strong>
+      </h2>
       <table className="w-full border-collapse">
         <thead className="bg-gray-50">
           <tr>
@@ -50,8 +58,23 @@ const AllUser = () => {
                   <td>{i + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user?.role !== 'admin' ? <button onClick={() => handleAdmin(user._id)} className='btn btn-primary text-white btn-xs'>Make Admin</button> : <p className='text-primary'>Admin</p>}</td>
-                  <td><button className='btn btn-accent text-white btn-xs'>Delete</button></td>
+                  <td>
+                    {user?.role !== "admin" ? (
+                      <button
+                        onClick={() => handleAdmin(user._id)}
+                        className="btn btn-primary text-white btn-xs"
+                      >
+                        Make Admin
+                      </button>
+                    ) : (
+                      <p className="text-primary">Admin</p>
+                    )}
+                  </td>
+                  <td>
+                    <button className="btn btn-accent text-white btn-xs">
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })
