@@ -7,6 +7,7 @@ const AddService = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgBB_key;
@@ -58,6 +59,7 @@ const AddService = () => {
             .then((serviceData) => {
               if (serviceData.acknowledged) {
                 toast.success(`New service ${data.name}, added successfully!`);
+                reset();
               }
             });
         }

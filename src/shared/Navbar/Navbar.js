@@ -75,13 +75,17 @@ const Navbar = () => {
                       <Link to="/dashboard/myAppointment">My Appointment</Link>
                     </li>
                     <li>
-                      <Link to="/dashboard/allUser">All User</Link>
+                      {isAdmin ? (
+                        <Link to="/dashboard/allUser">All User(Admin)</Link>
+                      ) : (
+                        <button onClick={handleToast}>All User(Admin)</button>
+                      )}
                     </li>
                     <li>
                       {isAdmin ? (
-                        <Link to="/dashboard/addService">Add New Service</Link>
+                        <Link to="/dashboard/addService">Add New Service(Admin)</Link>
                       ) : (
-                        <button onClick={handleToast}>Add New Service</button>
+                        <button onClick={handleToast}>Add New Service(Admin)</button>
                       )}
                     </li>
                     <li>
@@ -126,13 +130,17 @@ const Navbar = () => {
                     <Link to="/dashboard/myAppointment">My Appointment</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard/allUser">All Users</Link>
+                    {isAdmin ? (
+                      <Link to="/dashboard/allUser">All User(Admin)</Link>
+                    ) : (
+                      <button onClick={handleToast}>All User(Admin)</button>
+                    )}
                   </li>
                   <li>
                     {isAdmin ? (
-                      <Link to="/dashboard/addService">Add New Service</Link>
+                      <Link to="/dashboard/addService">Add New Service(Admin)</Link>
                     ) : (
-                      <button onClick={handleToast}>Add New Service</button>
+                      <button onClick={handleToast}>Add New Service(Admin)</button>
                     )}
                   </li>
                   <li>

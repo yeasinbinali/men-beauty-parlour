@@ -18,7 +18,7 @@ const MyAppointment = () => {
   });
 
   return (
-    <div className="my-10">
+    <div className="my-5">
       <h2 className="text-3xl text-center mb-4">
         My <strong className="text-primary font-bold">Appointment</strong>
       </h2>

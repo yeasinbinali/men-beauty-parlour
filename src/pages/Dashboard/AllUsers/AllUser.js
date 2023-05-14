@@ -1,14 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/UserContext";
-import useAdmin from "../../../hooks/useAdmin";
 
 const AllUser = () => {
   const url = "http://localhost:5000/users";
-  const {user} = useContext(AuthContext);
-
-  const [isAdmin] = useAdmin(user?.email);
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -18,6 +14,22 @@ const AllUser = () => {
       return data;
     },
   });
+
+  const handleDelete = user => {
+    const agree = window.confirm(`Are you deleting ${user?.name}`);
+    if(agree){
+      fetch(`http://localhost:5000/users/${user._id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if(data.deletedCount > 0){
+          toast.success('User deleted successfully!');
+        }
+      })
+    }
+  }
 
   const handleAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
@@ -71,7 +83,7 @@ const AllUser = () => {
                     )}
                   </td>
                   <td>
-                    <button className="btn btn-accent text-white btn-xs">
+                    <button onClick={() => handleDelete(user)} className="btn btn-accent text-white btn-xs">
                       Delete
                     </button>
                   </td>
