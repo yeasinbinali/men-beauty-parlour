@@ -5,6 +5,7 @@ import AddService from "../../pages/Dashboard/AddService/AddService";
 import AllUser from "../../pages/Dashboard/AllUsers/AllUser";
 import GivenReview from "../../pages/Dashboard/GivenReview/GivenReview";
 import MyAppointment from "../../pages/Dashboard/MyAppointment/MyAppointment";
+import Payment from "../../pages/Dashboard/Payment/Payment";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import Reviews from "../../pages/Reviews/Reviews/Reviews";
@@ -49,6 +50,11 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/givenReview',
         element: <GivenReview></GivenReview>
+      },
+      {
+        path: '/dashboard/payment/:id',
+        element: <Payment></Payment>,
+        loader: async({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
       },
       {
         path: "/reviews",

@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/UserContext";
 import { useQuery } from "@tanstack/react-query";
 import "./MyAppointment.css";
+import { Link } from "react-router-dom";
 
 const MyAppointment = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -14,7 +15,7 @@ const MyAppointment = () => {
       const res = await fetch(url);
       const data = await res.json();
       return data;
-    }
+    },
   });
 
   return (
@@ -32,6 +33,7 @@ const MyAppointment = () => {
             <th>FEE</th>
             <th>EMAIL</th>
             <th>PHONE</th>
+            <th>Payment</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +50,17 @@ const MyAppointment = () => {
                   <td>{booking.price}</td>
                   <td>{booking.email}</td>
                   <td>{booking.phone}</td>
+                  <td>
+                    {!booking.paid ? (
+                      <button className="btn btn-xs btn-primary">
+                        <Link to={`/dashboard/payment/${booking._id}`}>
+                          Pay
+                        </Link>
+                      </button>
+                    ) : (
+                      <span className="text-accent">Paid</span>
+                    )}
+                  </td>
                 </tr>
               );
             })

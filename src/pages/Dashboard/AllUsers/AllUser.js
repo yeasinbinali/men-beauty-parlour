@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React, {useContext} from "react";
+import React from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../../contexts/UserContext";
 
 const AllUser = () => {
   const url = "http://localhost:5000/users";
