@@ -51,15 +51,12 @@ const MyAppointment = () => {
                   <td>{booking.email}</td>
                   <td>{booking.phone}</td>
                   <td>
-                    {!booking.paid ? (
-                      <button className="btn btn-xs btn-primary">
-                        <Link to={`/dashboard/payment/${booking._id}`}>
-                          Pay
-                        </Link>
-                      </button>
-                    ) : (
-                      <span className="text-accent">Paid</span>
+                    {!booking.paid && (
+                      <Link to={`/dashboard/payment/${booking._id}`}>
+                        <button className="btn btn-xs btn-primary">Pay</button>
+                      </Link>
                     )}
+                    {booking.paid && <span className="text-primary">Paid</span>}
                   </td>
                 </tr>
               );
