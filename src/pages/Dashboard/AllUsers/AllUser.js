@@ -25,6 +25,7 @@ const AllUser = () => {
         console.log(data);
         if(data.deletedCount > 0){
           toast.success('User deleted successfully!');
+          refetch();
         }
       })
     }
