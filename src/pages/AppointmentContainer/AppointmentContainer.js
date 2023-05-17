@@ -59,7 +59,7 @@ const AppointmentContainer = () => {
   }
 
   return (
-    <div className="lg:flex justify-between items-center">
+    <div className="lg:flex justify-between items-center px-3">
       <div className='lg:w-fit md:w-60 sm:w-60 mx-auto lg:px-10 md:px-0 px-10'>
         <DayPicker
           styles={{
@@ -82,7 +82,7 @@ const AppointmentContainer = () => {
         />
       </div>
       <form onSubmit={handleSubmit(handleBooking)} className="text-center my-5">
-        <h2 className="text-2xl font-bold mb-5">
+        <h2 className="md:text-2xl text-md font-bold mb-5">
           Your selected service:{" "}
           <strong className="text-primary">{title}</strong>
         </h2>
