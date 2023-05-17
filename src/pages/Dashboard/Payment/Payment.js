@@ -8,18 +8,18 @@ const Payment = () => {
   const booking = useLoaderData();
   const navigation = useNavigation();
   const { serviceName, date, slot, price } = booking;
-  console.log(booking)
+  console.log(booking);
 
-  if(navigation.state === 'loading'){
-    return <div>Loading...</div>
+  if (navigation.state === "loading") {
+    return <div>Loading...</div>;
   }
 
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
   console.log(stripePromise);
 
   return (
-    <div className='border-2 p-2 my-5'>
-      <h2 className="text-2xl font-bold">
+    <div className="border-2 p-2 my-5">
+      <h2 className="md:text-2xl text-md font-bold">
         Payment for <strong className="text-primary">{serviceName}</strong>
       </h2>
       <p>

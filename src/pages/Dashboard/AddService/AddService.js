@@ -67,8 +67,8 @@ const AddService = () => {
   };
 
   return (
-    <div className="md:w-1/2 mx-auto">
-      <h2 className="text-3xl mt-3 mb-4 text-center">
+    <div className="md:w-1/2 mx-auto px-3">
+      <h2 className="lg:text-4xl md:text-3xl text-2xl mt-3 mb-4 text-center">
         Add <storng className="text-primary font-bold">New</storng> Service
       </h2>
       <form onSubmit={handleSubmit(handleService)}>
@@ -150,7 +150,7 @@ const AddService = () => {
           )}
         </div>
         {/* image */}
-        <div className="mb-2">
+        <div>
           <label htmlFor="image">Photo</label>
           <input
             type="file"

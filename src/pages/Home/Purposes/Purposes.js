@@ -30,8 +30,8 @@ const Purposes = () => {
   ];
 
   return (
-    <div>
-      <h2 className="text-4xl text-center">
+    <div className='px-3 lg:my-10 md:my-8 my-6'>
+      <h2 className="lg:text-4xl md:text-3xl text-2xl text-center">
         Our <strong className="text-primary">Purposes</strong>
       </h2>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 my-10'>

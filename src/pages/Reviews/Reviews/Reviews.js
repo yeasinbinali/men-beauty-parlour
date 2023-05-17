@@ -10,8 +10,8 @@ const Reviews = () => {
     }, [])
 
     return (
-        <div className="my-5">
-            <h2 className="text-4xl text-center mb-10">Customer <strong className="text-primary">Reviews</strong></h2>
+        <div className="my-5 px-3">
+            <h2 className="lg:text-4xl md:text-3xl text-2xl text-center lg:mb-10 md:mb-8 mb-6">Customer <strong className="text-primary">Reviews</strong></h2>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
                 {
                     testimonials && 

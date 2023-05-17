@@ -175,7 +175,7 @@ const Signup = () => {
           <div className="text-center">
             <button
               onClick={handleGoogleSignIn}
-              className="btn btn-accent text-white"
+              className="btn btn-accent text-white w-full"
             >
               Google Sign-In
             </button>

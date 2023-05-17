@@ -1,7 +1,6 @@
 #headline {
   animation: headline 1s ease-in-out infinite alternate;
-  text-shadow: 0 0 10px rgb(24, 24, 65), 0 0 20px rgb(24, 24, 65), 0 0 30px #ff91c8,
-      0 0 40px #ff91c8, 0 0 50px #ff91c8, 0 0 60px #ff91c8, 0 0 70px #ff91c8;
+  text-shadow: 0 0 5px rgb(24, 24, 65), 0 0 10px rgb(24, 24, 65)
 }
 /* @keyframes headline {
   from {

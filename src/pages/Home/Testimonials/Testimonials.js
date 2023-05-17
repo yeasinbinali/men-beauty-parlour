@@ -10,9 +10,9 @@ const Testimonials = () => {
     }, [])
 
     return (
-        <div className="my-10">
-            <h2 className="text-4xl text-center mb-10">Customer <strong className="text-primary">Testimonials</strong></h2>
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+        <div className="lg:my-10 md:my-8 my-6">
+            <h2 className="lg:text-4xl md:text-3xl text-2xl text-center lg:mb-10 md:mb-8 mb-6">Customer <strong className="text-primary">Testimonials</strong></h2>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 px-3">
                 {
                     testimonials && 
                     testimonials.slice(0,3).map(testimonial => {

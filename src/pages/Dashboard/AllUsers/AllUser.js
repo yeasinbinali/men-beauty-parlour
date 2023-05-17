@@ -14,26 +14,26 @@ const AllUser = () => {
     },
   });
 
-  const handleDelete = user => {
+  const handleDelete = (user) => {
     const agree = window.confirm(`Are you deleting ${user?.name}`);
-    if(agree){
+    if (agree) {
       fetch(`http://localhost:5000/users/${user._id}`, {
-        method: 'DELETE'
+        method: "DELETE",
       })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if(data.deletedCount > 0){
-          toast.success('User deleted successfully!');
-          refetch();
-        }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            toast.success("User deleted successfully!");
+            refetch();
+          }
+        });
     }
-  }
+  };
 
   const handleAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT"
+      method: "PUT",
     })
       .then((res) => res.json())
       .then((data) => {
@@ -46,53 +46,58 @@ const AllUser = () => {
   };
 
   return (
-    <div className="my-5">
-      <h2 className="text-3xl text-center mb-4">
+    <div className="my-5 px-3">
+      <h2 className="lg:text-4xl md:text-3xl text-2xl text-center mb-4">
         All <strong className="text-primary font-bold">Users</strong>
       </h2>
-      <table className="w-full border-collapse">
-        <thead className="bg-gray-50">
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>ADMIN</th>
-            <th>DELETE</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users && users.length === 0 ? (
-            <p className="text-center text-2xl">No user</p>
-          ) : (
-            users.map((user, i) => {
-              return (
-                <tr key={user._id}>
-                  <td>{i + 1}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    {user?.role !== "admin" ? (
+      <div className='overflow-x-auto'>
+        <table className="w-full border-collapse">
+          <thead className="bg-gray-50">
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>ADMIN</th>
+              <th>DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users && users.length === 0 ? (
+              <p className="text-center text-2xl">No user</p>
+            ) : (
+              users.map((user, i) => {
+                return (
+                  <tr key={user._id}>
+                    <td>{i + 1}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      {user?.role !== "admin" ? (
+                        <button
+                          onClick={() => handleAdmin(user._id)}
+                          className="btn btn-primary text-white btn-sm"
+                        >
+                          Make Admin
+                        </button>
+                      ) : (
+                        <p className="text-primary">Admin</p>
+                      )}
+                    </td>
+                    <td>
                       <button
-                        onClick={() => handleAdmin(user._id)}
-                        className="btn btn-primary text-white btn-xs"
+                        onClick={() => handleDelete(user)}
+                        className="btn btn-accent text-white btn-xs"
                       >
-                        Make Admin
+                        Delete
                       </button>
-                    ) : (
-                      <p className="text-primary">Admin</p>
-                    )}
-                  </td>
-                  <td>
-                    <button onClick={() => handleDelete(user)} className="btn btn-accent text-white btn-xs">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })
-          )}
-        </tbody>
-      </table>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
