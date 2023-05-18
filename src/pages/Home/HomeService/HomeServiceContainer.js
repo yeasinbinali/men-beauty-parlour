@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   faClock,
   faMoneyBillWave,
@@ -6,9 +6,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/UserContext";
 
 const HomeServiceContainer = ({ service }) => {
+  const { user } = useContext(AuthContext);
   const { img, title, time, price, barber } = service;
+
   return (
     <div className="border-4 p-2">
       <img className="w-80 h-60 mx-auto" src={img} alt="service" />
@@ -28,9 +31,15 @@ const HomeServiceContainer = ({ service }) => {
         </p>
       </div>
       <div className="text-center my-2">
-        <button className="btn btn-xs bg-accent text-white">
-          <Link to={`/service/${service._id}`}>Appointment</Link>
-        </button>
+        {user && user.uid ? (
+          <button className="btn btn-xs bg-accent text-white">
+            <Link to={`/service/${service._id}`}>Appointment</Link>
+          </button>
+        ) : (
+          <button className="btn btn-xs bg-accent text-white">
+            <Link to="/login">Appointment</Link>
+          </button>
+        )}
       </div>
     </div>
   );
