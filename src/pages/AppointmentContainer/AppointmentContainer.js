@@ -4,15 +4,12 @@ import { DayPicker } from "react-day-picker";
 import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/UserContext";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const AppointmentContainer = () => {
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const today = new Date();
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [selected, setSelected] = useState(today);
   const service = useLoaderData();
   const { price, title, slots } = service;
@@ -30,7 +27,7 @@ const AppointmentContainer = () => {
     return differenceInCalendarDays(date, new Date()) < 0;
   }
 
-  const handleBooking = data => {
+  const handleBooking = (data) => {
     const booking = {
       serviceName: title,
       name: data.name,
@@ -38,29 +35,29 @@ const AppointmentContainer = () => {
       phone: data.phone,
       date: format(selected, "PPP"),
       slot: data.slot,
-      price: data.price
-    }
+      price: data.price,
+    };
 
-    fetch('http://localhost:5000/bookings', {
-      method: 'POST',
+    fetch("https://men-beauty-server.vercel.app/bookings", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify(booking)
+      body: JSON.stringify(booking),
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data.acknowledged){
-        console.log(data);
-        navigate('/dashboard/myAppointment');
-        toast.success('Booking confirmed');
-      }
-    })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          console.log(data);
+          navigate("/dashboard/myAppointment");
+          toast.success("Booking confirmed");
+        }
+      });
+  };
 
   return (
     <div className="lg:flex justify-between items-center px-3">
-      <div className='lg:w-fit md:w-60 sm:w-60 mx-auto lg:px-10 md:px-0 px-10'>
+      <div className="lg:w-fit md:w-60 sm:w-60 mx-auto lg:px-10 md:px-0 px-10">
         <DayPicker
           styles={{
             caption: {
@@ -71,7 +68,7 @@ const AppointmentContainer = () => {
             },
             head_cell: { padding: "10px" },
             cell: { padding: "10px" },
-            tfoot: { fontSize: "20px" }
+            tfoot: { fontSize: "20px" },
           }}
           mode="single"
           selected={selected}
@@ -95,8 +92,8 @@ const AppointmentContainer = () => {
         />
         <input
           type="text"
-          {...register("email",{
-            value:`${user?.email}`
+          {...register("email", {
+            value: `${user?.email}`,
           })}
           className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           required
@@ -116,21 +113,25 @@ const AppointmentContainer = () => {
           className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           readOnly
         />
-        <select {...register("slot")} className="select select-bordered w-full lg:max-w-xl md:max-w-sm mb-2">
+        <select
+          {...register("slot")}
+          className="select select-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
+        >
           <option selected>{slots[0]}</option>
-          {
-            slots.map(slot => <option>{slot}</option>)
-          }
+          {slots.map((slot) => (
+            <option>{slot}</option>
+          ))}
         </select>
         <input
           type="text"
-          {...register("price", 
-          {value:`${price}`}
-          )}
+          {...register("price", { value: `${price}` })}
           className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"
           readOnly
-        /><br/>
-        <button className='btn btn-primary btn-wide text-white my-2'>Submit</button>
+        />
+        <br />
+        <button className="btn btn-primary btn-wide text-white my-2">
+          Submit
+        </button>
       </form>
     </div>
   );

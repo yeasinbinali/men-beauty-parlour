@@ -9,7 +9,7 @@ const AddService = () => {
     register,
     formState: { errors },
     handleSubmit,
-    reset
+    reset,
   } = useForm();
 
   const imgHostKey = process.env.REACT_APP_imgBB_key;
@@ -50,7 +50,7 @@ const AddService = () => {
             ],
             img: imgData.data.url,
           };
-          fetch("http://localhost:5000/services", {
+          fetch("https://men-beauty-server.vercel.app/services", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -62,7 +62,7 @@ const AddService = () => {
               if (serviceData.acknowledged) {
                 toast.success(`New service ${data.name}, added successfully!`);
                 reset();
-                navigate('/services');
+                navigate("/services");
               }
             });
         }

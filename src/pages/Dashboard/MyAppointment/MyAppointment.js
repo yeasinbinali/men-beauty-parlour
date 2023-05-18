@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const MyAppointment = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://men-beauty-server.vercel.app/bookings?email=${user?.email}`;
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -23,7 +23,7 @@ const MyAppointment = () => {
       <h2 className="lg:text-4xl md:text-3xl text-2xl text-center mb-4">
         My <strong className="text-primary font-bold">Appointment</strong>
       </h2>
-      <div className='overflow-x-auto'>
+      <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead className="bg-gray-50">
             <tr>

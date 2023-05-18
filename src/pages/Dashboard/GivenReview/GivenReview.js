@@ -16,39 +16,41 @@ const GivenReview = () => {
   const handleReview = (data) => {
     const image = data.image[0];
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
 
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
 
     fetch(url, {
-        method: 'POST',
-        body: formData
+      method: "POST",
+      body: formData,
     })
-    .then(res => res.json())
-    .then(imgData => {
-        if(imgData.success){
-            const opinionDetail = {
-                name: data.name, 
-                img: imgData.data.url,
-                address: data.address,
-                opinion: data.opinion
-            }
-            fetch('http://localhost:5000/reviews', {
-              method: 'POST',
-              headers: {
-                'content-type': 'application/json'
-              },
-              body: JSON.stringify(opinionDetail)
-            })
-            .then(res => res.json())
-            .then(data => {
-              if(data.acknowledged){
-                toast.success(`Thanks ${data.name}, Your review added successfully!`);
-                navigate('/reviews');
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          const opinionDetail = {
+            name: data.name,
+            img: imgData.data.url,
+            address: data.address,
+            opinion: data.opinion,
+          };
+          fetch("https://men-beauty-server.vercel.app/reviews", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(opinionDetail),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                toast.success(
+                  `Thanks ${data.name}, Your review added successfully!`
+                );
+                navigate("/reviews");
               }
-            })
+            });
         }
-    })
+      });
   };
 
   return (
@@ -63,10 +65,10 @@ const GivenReview = () => {
           <input
             className="input input-bordered w-full"
             type="text"
-            placeholder='Your Name'
+            placeholder="Your Name"
             {...register("name", {
               required: true,
-              minLength: 3
+              minLength: 3,
             })}
           />
           {errors.name?.type === "required" && (
@@ -86,9 +88,9 @@ const GivenReview = () => {
           <input
             className="input input-bordered w-full"
             type="text"
-            placeholder='Your Address'
+            placeholder="Your Address"
             {...register("address", {
-              required: true
+              required: true,
             })}
           />
           {errors.name?.type === "required" && (

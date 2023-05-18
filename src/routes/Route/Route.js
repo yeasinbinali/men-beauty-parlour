@@ -31,33 +31,37 @@ export const router = createBrowserRouter([
       {
         path: "/service/:id",
         element: (
-          <PrivateRoute><AppointmentContainer></AppointmentContainer></PrivateRoute>
+          <PrivateRoute>
+            <AppointmentContainer></AppointmentContainer>
+          </PrivateRoute>
         ),
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/services/${params.id}`);
-        }
+          return fetch(
+            `https://men-beauty-server.vercel.app/services/${params.id}`
+          );
+        },
       },
       {
-        path: '/dashboard/myAppointment',
-        element: <MyAppointment></MyAppointment>
+        path: "/dashboard/myAppointment",
+        element: <MyAppointment></MyAppointment>,
       },
       {
-        path: '/dashboard/allUser',
-        element: <AllUser></AllUser>
+        path: "/dashboard/allUser",
+        element: <AllUser></AllUser>,
       },
       {
-        path: '/dashboard/addService',
-        element: <AddService></AddService>
+        path: "/dashboard/addService",
+        element: <AddService></AddService>,
       },
       {
-        path: '/dashboard/givenReview',
-        element: <GivenReview></GivenReview>
+        path: "/dashboard/givenReview",
+        element: <GivenReview></GivenReview>,
       },
       {
-        path: '/dashboard/payment/:id',
+        path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
-        loader: async({params}) => 
-          fetch(`http://localhost:5000/bookings/${params.id}`)
+        loader: async ({ params }) =>
+          fetch(`https://men-beauty-server.vercel.app/bookings/${params.id}`),
       },
       {
         path: "/reviews",

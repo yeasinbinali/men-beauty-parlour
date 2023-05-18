@@ -14,7 +14,7 @@ const Signup = () => {
     register,
     formState: { errors },
     handleSubmit,
-    reset
+    reset,
   } = useForm();
   const { createUser, googleSignIn } = useContext(AuthContext);
 
@@ -38,12 +38,11 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         saveUser(name, email);
-        if(user?.uid){
-          navigate('/');
+        if (user?.uid) {
+          navigate("/");
           toast.success("User created successfully");
           reset();
         }
-
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -53,7 +52,7 @@ const Signup = () => {
 
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("http://localhost:5000/users", {
+    fetch("https://men-beauty-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -62,7 +61,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.acknowledged){
+        if (data.acknowledged) {
           toast.success("User created successfully");
           navigate("/");
         }
@@ -99,7 +98,7 @@ const Signup = () => {
                 type="text"
                 {...register("name", {
                   required: true,
-                  minLength: { value: 3 }
+                  minLength: { value: 3 },
                 })}
               />
               {errors.name?.type === "required" && (
