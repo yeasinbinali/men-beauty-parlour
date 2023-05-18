@@ -11,12 +11,14 @@ import Login from "../../pages/Login/Login";
 import Reviews from "../../pages/Reviews/Reviews/Reviews";
 import Services from "../../pages/Services/Services/Services";
 import Signup from "../../pages/Signup/Signup";
+import DisplayError from "../../shared/DisplayError/DisplayError";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",

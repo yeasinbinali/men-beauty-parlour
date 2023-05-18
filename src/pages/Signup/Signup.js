@@ -5,6 +5,7 @@ import signup from "../../images/signup.png";
 import { useForm } from "react-hook-form";
 import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../../contexts/UserContext";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [error, setError] = useState("");
@@ -38,6 +39,7 @@ const Signup = () => {
         const user = result.user;
         saveUser(name, email);
         console.log(user);
+        toast.success('User created successfully');
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -57,7 +59,8 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         if(data.acknowledged){
-          navigate('/')
+          toast.success('User created successfully');
+          navigate('/');
         }
       });
   };
