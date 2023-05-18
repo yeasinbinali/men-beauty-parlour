@@ -19,6 +19,10 @@ const Payment = () => {
 
   return (
     <div className="border-2 p-2 my-5">
+      <p>Card Number: 4242 4242 4242 4242</p>
+      <p>Date: Any Future Date</p>
+      <p>CVC: Any 3digits</p>
+      <p>ZIP: Any 5digits</p>
       <h2 className="md:text-2xl text-md font-bold">
         Payment for <strong className="text-primary">{serviceName}</strong>
       </h2>

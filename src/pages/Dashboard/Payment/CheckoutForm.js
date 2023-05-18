@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 const CheckoutForm = ({ booking }) => {
@@ -8,6 +9,7 @@ const CheckoutForm = ({ booking }) => {
   const [clientSecret, setClientSecret] = useState('');
   const [processing, setProcessing] = useState(false);
 
+  const navigate = useNavigate();
   const { price, name, email, _id } = booking;
 
   const stripe = useStripe();
@@ -90,6 +92,7 @@ const CheckoutForm = ({ booking }) => {
         if(data.insertedId){
           setSuccess('Congrats! Your payment completed');
           setTransactionId(paymentIntent.id);
+          navigate('/dashboard/myAppointment');
         }
       })
 
@@ -102,7 +105,7 @@ const CheckoutForm = ({ booking }) => {
     <section className='my-5'>
       <form className="w-96" onSubmit={handleSubmit}>
         <CardElement
-          className="border-4 p-3 rounded-full"
+          className="border-4 p-3"
           options={{
             style: {
               base: {

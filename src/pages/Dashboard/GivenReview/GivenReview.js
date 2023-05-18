@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const GivenReview = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -42,6 +44,7 @@ const GivenReview = () => {
             .then(data => {
               if(data.acknowledged){
                 toast.success(`Thanks ${data.name}, Your review added successfully!`);
+                navigate('/reviews');
               }
             })
         }

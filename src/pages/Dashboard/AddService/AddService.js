@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AddService = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -60,6 +62,7 @@ const AddService = () => {
               if (serviceData.acknowledged) {
                 toast.success(`New service ${data.name}, added successfully!`);
                 reset();
+                navigate('/services');
               }
             });
         }
