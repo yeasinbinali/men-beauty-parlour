@@ -39,7 +39,7 @@ const Signup = () => {
         const user = result.user;
         saveUser(name, email);
         console.log(user);
-        toast.success('User created successfully');
+        navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -59,8 +59,8 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         if(data.acknowledged){
-          toast.success('User created successfully');
-          navigate('/');
+          toast.success("User created successfully");
+          navigate("/");
         }
       });
   };
