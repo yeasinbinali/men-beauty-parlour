@@ -23,6 +23,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         saveUser(user.displayName, user.email);
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);
