@@ -14,6 +14,7 @@ const Signup = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset
   } = useForm();
   const { createUser, googleSignIn } = useContext(AuthContext);
 
@@ -22,7 +23,6 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         saveUser(user.displayName, user.email);
-        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -38,8 +38,12 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         saveUser(name, email);
-        console.log(user);
-        navigate("/");
+        if(user?.uid){
+          navigate('/');
+          toast.success("User created successfully");
+          reset();
+        }
+
       })
       .catch((error) => {
         const errorMessage = error.message;
