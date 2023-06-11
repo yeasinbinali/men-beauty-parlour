@@ -26,14 +26,15 @@ const GivenReview = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
+        console.log(data);
         if (imgData.success) {
           const opinionDetail = {
             name: data.name,
-            img: imgData.data.url,
-            address: data.address,
-            opinion: data.opinion,
+            image: imgData.data.url,
+            area: data.address,
+            description: data.opinion,
           };
-          fetch("https://men-beauty-server.vercel.app/reviews", {
+          fetch("http://localhost:5000/reviews", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -56,7 +57,7 @@ const GivenReview = () => {
   return (
     <div className="md:w-1/2 mx-auto px-3">
       <h2 className="lg:text-4xl md:text-3xl text-2xl mt-3 mb-4 text-center">
-        Give Your <storng className="text-primary font-bold">Opinion</storng>
+        Give Your <strong className="text-primary font-bold">Opinion</strong>
       </h2>
       <form onSubmit={handleSubmit(handleReview)}>
         {/* Name */}
@@ -136,7 +137,7 @@ const GivenReview = () => {
         {/* submit btn */}
         <div className="text-center">
           <input
-            value="Add Service"
+            value="Add Review"
             type="submit"
             className="btn btn-primary text-white"
           />

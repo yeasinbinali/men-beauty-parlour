@@ -38,7 +38,7 @@ const AppointmentContainer = () => {
       price: data.price,
     };
 
-    fetch("https://men-beauty-server.vercel.app/bookings", {
+    fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -100,7 +100,7 @@ const AppointmentContainer = () => {
           readOnly
         />
         <input
-          type="text"
+          type="number"
           placeholder="Phone Number"
           {...register("phone")}
           className="input input-bordered w-full lg:max-w-xl md:max-w-sm mb-2"

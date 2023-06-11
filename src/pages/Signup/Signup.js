@@ -23,7 +23,7 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         saveUser(user.displayName, user.email);
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -53,7 +53,7 @@ const Signup = () => {
 
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("https://men-beauty-server.vercel.app/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

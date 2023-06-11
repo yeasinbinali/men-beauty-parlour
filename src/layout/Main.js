@@ -3,6 +3,8 @@ import { Outlet } from "react-router";
 import Footer from "../shared/Footer/Footer";
 import Navbar from "../shared/Navbar/Navbar";
 
+// https://men-beauty-server.vercel.app/
+
 const Main = () => {
   return (
     <div className="text-black bg-secondary">

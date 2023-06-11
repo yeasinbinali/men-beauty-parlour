@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState("");
 
   useEffect(() => {
-    fetch("https://men-beauty-server.vercel.app/reviews")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
       .then((data) => setTestimonials(data));
   }, []);
@@ -37,6 +38,11 @@ const Testimonials = () => {
               </div>
             );
           })}
+      </div>
+      <div className="text-center my-5">
+        <button className="btn btn-xl btn-primary text-white">
+          <Link to="/reviews">More Reviews</Link>
+        </button>
       </div>
     </div>
   );

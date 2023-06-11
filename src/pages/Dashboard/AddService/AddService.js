@@ -50,7 +50,7 @@ const AddService = () => {
             ],
             img: imgData.data.url,
           };
-          fetch("https://men-beauty-server.vercel.app/services", {
+          fetch("http://localhost:5000/services", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -72,7 +72,7 @@ const AddService = () => {
   return (
     <div className="md:w-1/2 mx-auto px-3">
       <h2 className="lg:text-4xl md:text-3xl text-2xl mt-3 mb-4 text-center">
-        Add <storng className="text-primary font-bold">New</storng> Service
+        Add <strong className="text-primary font-bold">New</strong> Service
       </h2>
       <form onSubmit={handleSubmit(handleService)}>
         {/* Service Name */}
