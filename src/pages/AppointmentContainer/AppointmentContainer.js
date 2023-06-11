@@ -16,11 +16,11 @@ const AppointmentContainer = () => {
   const navigate = useNavigate();
 
   const footer = selected ? (
-    <p>
-      You selected <b className="text-primary">{format(selected, "PPP")}</b>
+    <p className="md:text-lg text-sm">
+      You selected <b className='text-primary '>{format(selected, "PPP")}</b>
     </p>
   ) : (
-    <p>Please pick a day.</p>
+    <p className="md:text-lg text-sm">Please pick a day.</p>
   );
 
   function isPastDate(date) {
@@ -57,7 +57,7 @@ const AppointmentContainer = () => {
 
   return (
     <div className="lg:flex justify-between items-center px-3">
-      <div className="lg:w-fit md:w-60 sm:w-60 mx-auto lg:px-10 md:px-0 px-10">
+      <div className="lg:w-fit md:w-60 w-60 mx-auto lg:px-10 md:px-0">
         <DayPicker
           styles={{
             caption: {
@@ -66,7 +66,7 @@ const AppointmentContainer = () => {
               fontSize: "20px",
               marginBottom: "4px",
             },
-            head_cell: { padding: "10px" },
+            head_cell: { padding: "0px" },
             cell: { padding: "10px" },
             tfoot: { fontSize: "20px" },
           }}

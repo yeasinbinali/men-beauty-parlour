@@ -18,9 +18,9 @@ const HomeAbout = () => {
           makeovers.
         </p>
         <div className='flex justify-between items-center'>
-            <p><h2 className='md:text-3xl text-2xl font-bold text-accent'>500+</h2>Happy Customer</p>
-            <p><h2 className='md:text-3xl text-2xl font-bold text-accent'>15+</h2>Total Services</p>
-            <p><h2 className='md:text-3xl text-2xl font-bold text-accent'>2.5k+</h2>Youtube Subscribers</p>
+            <p><h2 className='md:text-3xl text-2xl font-bold text-accent'>500+</h2><small>Happy Customer</small></p>
+            <p><h2 className='md:text-3xl text-2xl font-bold text-accent'>15+</h2><small>Total Services</small></p>
+            <p><h2 className='md:text-3xl text-2xl font-bold text-accent'>2.5k+</h2><small>Youtube Subscribers</small></p>
         </div>
       </div>
     </div>

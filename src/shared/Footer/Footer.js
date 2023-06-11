@@ -25,18 +25,18 @@ const Footer = () => {
         <Link className="link link-hover">Cookie policy</Link>
       </div>
       <div>
-        <h2 className='text-3xl text-primary font-bold'>Men Beauty Parlour</h2>
+        <h2 className='md:text-3xl text-2xl text-primary font-bold'>Men Beauty Parlour</h2>
         <div className="form-control w-80">
           <label className="label">
             <span className="text-black">Enter your email address</span>
           </label>
-          <div className="relative">
+          <div>
             <input
               type="text"
               placeholder="username@site.com"
-              className="input input-bordered w-full pr-16"
+              className="input input-bordered md:w-full md:pr-16 pr-0"
             />
-            <button className="btn btn-primary absolute top-0 right-0 rounded-l-none text-white">
+            <button className="btn btn-primary block top-0 right-0 rounded-l-none text-white">
               Subscribe
             </button>
           </div>

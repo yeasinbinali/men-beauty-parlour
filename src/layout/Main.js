@@ -6,7 +6,7 @@ import Navbar from "../shared/Navbar/Navbar";
 const Main = () => {
   return (
     <div className="text-black bg-secondary">
-      <div className='container w-full mx-auto'>
+      <div className='container w-full mx-auto p-5'>
         <Navbar></Navbar>
         <Outlet></Outlet>
         <Footer></Footer>

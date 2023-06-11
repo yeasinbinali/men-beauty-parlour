@@ -45,7 +45,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52 bg-gray-50"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box bg-gray-50"
             >
               <li>
                 <Link to="/">Home</Link>
@@ -70,22 +70,22 @@ const Navbar = () => {
                       <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                     </svg>
                   </Link>
-                  <ul className="p-2 bg-gray-100">
+                  <ul className="bg-gray-100">
                     <li>
                       <Link to="/dashboard/myAppointment">My Appointment</Link>
                     </li>
                     <li>
                       {isAdmin ? (
-                        <Link to="/dashboard/allUser">All User(Admin)</Link>
+                        <Link to="/dashboard/allUser">All User</Link>
                       ) : (
-                        <button onClick={handleToast}>All User(Admin)</button>
+                        <button onClick={handleToast}>All User</button>
                       )}
                     </li>
                     <li>
                       {isAdmin ? (
-                        <Link to="/dashboard/addService">Add New Service(Admin)</Link>
+                        <Link to="/dashboard/addService">Add Service</Link>
                       ) : (
-                        <button onClick={handleToast}>Add New Service(Admin)</button>
+                        <button onClick={handleToast}>Add Service</button>
                       )}
                     </li>
                     <li>
@@ -96,7 +96,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <h2 className="text-3xl font-bold">
+          <h2 className="md:text-3xl text-2xl font-bold">
             Beauty <strong className="text-primary">Parlour</strong>
           </h2>
         </div>
@@ -138,9 +138,9 @@ const Navbar = () => {
                   </li>
                   <li>
                     {isAdmin ? (
-                      <Link to="/dashboard/addService">Add New Service(Admin)</Link>
+                      <Link to="/dashboard/addService">Add Service(Admin)</Link>
                     ) : (
-                      <button onClick={handleToast}>Add New Service(Admin)</button>
+                      <button onClick={handleToast}>Add Service(Admin)</button>
                     )}
                   </li>
                   <li>
@@ -155,12 +155,12 @@ const Navbar = () => {
           {user && user.uid ? (
             <button
               onClick={handleLogout}
-              className="btn bg-primary text-white"
+              className="btn md:btn-md btn-sm bg-primary text-white"
             >
               Logout
             </button>
           ) : (
-            <button className="btn bg-primary text-white">
+            <button className="btn md:btn-md btn-sm bg-primary text-white">
               <Link to="/login">Login</Link>
             </button>
           )}

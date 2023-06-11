@@ -76,7 +76,7 @@ const Signup = () => {
       </div>
       <div className="card md:w-1/2">
         <div className="card-body">
-          <h2 className="text-3xl text-center font-bold my-5">
+          <h2 className="md:text-3xl text-2xl text-center font-bold my-5">
             <span>
               <Typewriter
                 words={["Create an Account", "Sign Up"]}
