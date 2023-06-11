@@ -36,7 +36,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/services/${params.id}`);
+          return fetch(
+            `https://men-beauty-server.vercel.app/services/${params.id}`
+          );
         },
       },
       {
@@ -59,7 +61,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(`https://men-beauty-server.vercel.app/bookings/${params.id}`),
       },
       {
         path: "/reviews",

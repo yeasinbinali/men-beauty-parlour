@@ -13,7 +13,7 @@ const useToken = (user) => {
       userPhoto: userPhoto,
     };
     if (uid) {
-      fetch(`http://localhost:5000/users/${userEmail}`, {
+      fetch(`https://men-beauty-server.vercel.app/users/${userEmail}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

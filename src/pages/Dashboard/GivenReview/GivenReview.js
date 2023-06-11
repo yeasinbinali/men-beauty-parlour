@@ -34,7 +34,7 @@ const GivenReview = () => {
             area: data.address,
             description: data.opinion,
           };
-          fetch("http://localhost:5000/reviews", {
+          fetch("https://men-beauty-server.vercel.app/reviews", {
             method: "POST",
             headers: {
               "content-type": "application/json",

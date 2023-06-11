@@ -38,7 +38,7 @@ const AppointmentContainer = () => {
       price: data.price,
     };
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://men-beauty-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

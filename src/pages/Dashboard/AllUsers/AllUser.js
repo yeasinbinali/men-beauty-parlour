@@ -3,7 +3,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const AllUser = () => {
-  const url = "http://localhost:5000/users";
+  const url = "https://men-beauty-server.vercel.app/users";
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -17,7 +17,7 @@ const AllUser = () => {
   const handleDelete = (user) => {
     const agree = window.confirm(`Are you deleting ${user?.name}`);
     if (agree) {
-      fetch(`http://localhost:5000/users/${user._id}`, {
+      fetch(`https://men-beauty-server.vercel.app/users/${user._id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -32,7 +32,7 @@ const AllUser = () => {
   };
 
   const handleAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://men-beauty-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
