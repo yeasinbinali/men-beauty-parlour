@@ -15,7 +15,6 @@ const Payment = () => {
   }
 
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
-  console.log(stripePromise);
 
   return (
     <div className="border-2 p-2 my-5">
